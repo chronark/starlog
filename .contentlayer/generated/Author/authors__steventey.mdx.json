@@ -1,0 +1,22 @@
+{
+  "slug": "steventey",
+  "name": "Steven Tey",
+  "description": "Senior Developer Advocate at Vercel",
+  "avatar": "https://pbs.twimg.com/profile_images/1506792347840888834/dS-r50Je_400x400.jpg",
+  "twitter": "steventey",
+  "body": {
+    "raw": "",
+    "code": "var Component=(()=>{var u=Object.create;var a=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var _=Object.getPrototypeOf,d=Object.prototype.hasOwnProperty;var f=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),l=(e,t)=>{for(var n in t)a(e,n,{get:t[n],enumerable:!0})},i=(e,t,n,s)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let o of g(t))!d.call(e,o)&&o!==n&&a(e,o,{get:()=>t[o],enumerable:!(s=x(t,o))||s.enumerable});return e};var v=(e,t,n)=>(n=e!=null?u(_(e)):{},i(t||!e||!e.__esModule?a(n,\"default\",{value:e,enumerable:!0}):n,e)),j=e=>i(a({},\"__esModule\",{value:!0}),e);var m=f((b,c)=>{c.exports=_jsx_runtime});var M={};l(M,{default:()=>D,frontmatter:()=>y});var r=v(m()),y={name:\"Steven Tey\",description:\"Senior Developer Advocate at Vercel\",slug:\"steventey\",avatar:\"https://pbs.twimg.com/profile_images/1506792347840888834/dS-r50Je_400x400.jpg\",twitter:\"steventey\"};function p(e){return(0,r.jsx)(r.Fragment,{})}function w(e={}){let{wrapper:t}=e.components||{};return t?(0,r.jsx)(t,Object.assign({},e,{children:(0,r.jsx)(p,e)})):p(e)}var D=w;return j(M);})();\n;return Component;"
+  },
+  "_id": "authors/steventey.mdx",
+  "_raw": {
+    "sourceFilePath": "authors/steventey.mdx",
+    "sourceFileName": "steventey.mdx",
+    "sourceFileDir": "authors",
+    "contentType": "mdx",
+    "flattenedPath": "authors/steventey"
+  },
+  "type": "Author",
+  "path": "/authors/steventey",
+  "slugAsParams": "steventey"
+}
