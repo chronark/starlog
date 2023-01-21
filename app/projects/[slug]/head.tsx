@@ -21,7 +21,7 @@ export default function Head(props: { params: { slug: string } }) {
 
   return (
     <>
-      <title>EnvShare</title>
+      <title>starlog.dev</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content={title} />
       <meta property='og:image' content={url.toString()} />
