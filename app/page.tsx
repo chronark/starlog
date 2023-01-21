@@ -13,6 +13,7 @@ function asyncComponent<T, R>(fn: (arg: T) => Promise<R>): (arg: T) => R {
 const Project = asyncComponent(async ({ project }: { project: Project }) => {
   const image = await mql(project.url, {
     screenshot: true,
+    waitForTimeout: 2000,
   });
 
   const stars = await fetch(`https://api.github.com/repos/${project.repository}`, {
