@@ -1,11 +1,10 @@
+// contentlayer.config.js
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-
-/** @type {import('contentlayer/source-files').ComputedFields} */
-const computedFields = {
+var computedFields = {
   path: {
     type: "string",
     resolve: (doc) => `/${doc._raw.flattenedPath}`,
@@ -15,12 +14,10 @@ const computedFields = {
     resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
   },
 };
-
-export const Project = defineDocumentType(() => ({
+var Project = defineDocumentType(() => ({
   name: "Project",
   filePathPattern: "projects/**/*.mdx",
   contentType: "mdx",
-
   fields: {
     title: {
       type: "string",
@@ -33,10 +30,6 @@ export const Project = defineDocumentType(() => ({
       type: "date",
       required: true,
     },
-    url: {
-      type: "string",
-      required: true,
-    },
     image: {
       type: "string",
       required: true,
@@ -44,10 +37,6 @@ export const Project = defineDocumentType(() => ({
     tech: {
       type: "list",
       of: { type: "string" },
-    },
-    github: {
-      type: "string",
-      required: true,
     },
     authors: {
       // Reference types are not embedded.
@@ -61,8 +50,7 @@ export const Project = defineDocumentType(() => ({
   },
   computedFields,
 }));
-
-export const Author = defineDocumentType(() => ({
+var Author = defineDocumentType(() => ({
   name: "Author",
   filePathPattern: "authors/**/*.mdx",
   contentType: "mdx",
@@ -78,19 +66,18 @@ export const Author = defineDocumentType(() => ({
     description: {
       type: "string",
     },
-    twitter: {
+    avatar: {
       type: "string",
       required: true,
     },
-    avatar: {
+    twitter: {
       type: "string",
       required: true,
     },
   },
   computedFields,
 }));
-
-export const Page = defineDocumentType(() => ({
+var Page = defineDocumentType(() => ({
   name: "Page",
   filePathPattern: "pages/**/*.mdx",
   contentType: "mdx",
@@ -105,8 +92,7 @@ export const Page = defineDocumentType(() => ({
   },
   computedFields,
 }));
-
-export default makeSource({
+var contentlayer_config_default = makeSource({
   contentDirPath: "./content",
   documentTypes: [Page, Project, Author],
   mdx: {
@@ -118,8 +104,6 @@ export default makeSource({
         {
           theme: "github-dark",
           onVisitLine(node) {
-            // Prevent lines from collapsing in `display: grid` mode, and allow empty
-            // lines to be copy/pasted
             if (node.children.length === 0) {
               node.children = [{ type: "text", value: " " }];
             }
@@ -144,3 +128,5 @@ export default makeSource({
     ],
   },
 });
+export { Author, Page, Project, contentlayer_config_default as default };
+//# sourceMappingURL=compiled-contentlayer-config-MNC3EHPW.mjs.map

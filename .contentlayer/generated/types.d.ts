@@ -16,8 +16,8 @@ export type Author = {
   slug: string;
   name: string;
   description?: string | undefined;
-  avatar: string;
   twitter: string;
+  avatar: string;
   /** MDX file body */
   body: MDX;
   path: string;
@@ -45,8 +45,10 @@ export type Project = {
   title: string;
   description?: string | undefined;
   date: IsoDateTimeString;
+  url: string;
   image: string;
   tech?: string[] | undefined;
+  github: string;
   authors: string[];
   /** MDX file body */
   body: MDX;
