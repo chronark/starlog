@@ -1,9 +1,39 @@
 import "tailwindcss/tailwind.css";
 import { Inter } from "@next/font/google";
-
+import font from "@next/font/local";
 import { Analytics } from "@/app/components/analytics";
 import Link from "next/link";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const pangea = font({
+  src: [
+    {
+      path: "../public/fonts/PangeaAfrikanTrial-Light.woff2",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/PangeaAfrikanTrial-Regular.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/PangeaAfrikanTrial-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/PangeaAfrikanTrial-SemiBold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/PangeaAfrikanTrial-Bold.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-pangea",
+});
 
 const footerNav = [
   {
@@ -36,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={[inter.variable, pangea.variable].join(" ")}>
       <head />
       <body className="min-h-screen">
         <Analytics />

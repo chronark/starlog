@@ -7,18 +7,18 @@ import Link from "next/link";
 
 interface PostPageProps {
   params: {
-    slug: string[];
+    slug: string;
   };
 }
 
 export async function generateStaticParams(): Promise<PostPageProps["params"][]> {
   return allProjects.map((p) => ({
-    slug: p.slug.split("/"),
+    slug: p.slug,
   }));
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const slug = params?.slug?.join("/");
+  const slug = params?.slug;
   const project = allProjects.find((project) => project.slug === slug);
 
   if (!project) {
@@ -30,13 +30,11 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <div className="relative">
       <Navigation />
-      <header className=" bg-gradient-to-tr from-stone-100 via-white to-stone-200">
+      <header className="font-display bg-gradient-to-tr from-stone-100 via-white to-stone-200">
         <div className="relative px-6 lg:px-8">
           <div className="max-w-3xl pt-20 pb-16 mx-auto sm:pt-48">
             <div>
-              <h1 className="text-4xl font-bold tracking-tight text-stone-900 sm:text-center sm:text-6xl">
-                {project.title}
-              </h1>
+              <h1 className="text-4xl font-bold text-stone-900 sm:text-center sm:text-6xl">{project.title}</h1>
               <p className="mt-6 text-lg leading-8 text-stone-600 sm:text-center">{project.description} </p>
 
               <div className="mt-16 lg:mt-24">
@@ -85,7 +83,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </header>
       <main className="border-t border-stone-200">
-        <article className="py-12 mx-auto prose lg:prose-lg ">
+        <article className="px-4 py-12 mx-auto prose lg:prose-lg ">
           <Mdx code={project.body.code} />
         </article>
       </main>
