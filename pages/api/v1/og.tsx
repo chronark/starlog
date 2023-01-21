@@ -26,7 +26,7 @@ export default async function handler(req: NextRequest) {
     // TODO: Fix tailwind classes on this route
     return new ImageResponse(
       <div tw="flex w-full h-full justify-center items-center flex-col font-display bg-white">
-        <h1 tw="text-4xl font-bold text-stone-900 sm:text-center sm:text-6xl">{title}</h1>
+        <h1 tw="text-4xl font-bold text-stone-900 sm:text-center sm:text-6xl uppercase">{title}</h1>
         <p tw="mt-6 text-lg leading-8 text-stone-600 sm:text-center">{subtitle} </p>
         <ul tw="flex items-center justify-center w-full mt-4 overflow-hidden ">
           {authors.map((author) => (
