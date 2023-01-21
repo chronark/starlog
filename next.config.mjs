@@ -7,7 +7,6 @@ const nextConfig = {
     domains: ["avatars.githubusercontent.com", "pbs.twimg.com"],
   },
   experimental: {
-    scrollRestoration: true,
     appDir: true,
   },
 };
