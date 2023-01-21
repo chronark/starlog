@@ -14,7 +14,7 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
   const image = await mql(project.url, {
     screenshot: true,
     waitForTimeout: 2000,
-  });
+  }).catch(() => null);
 
   const stars = await fetch(`https://api.github.com/repos/${project.repository}`, {
     headers: {
@@ -36,10 +36,9 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
         <div className="space-y-5 xl:col-span-3">
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center justify-between flex-grow lg:max-w-xl">
+              <div className="flex flex-col items-start justify-start gap-4 md:items-center md:flex-row lg:max-w-xl">
                 {allAuthors
                   .filter((a) => project.authors.includes(a.slug))
-                  .slice(0, 1)
                   .map((a) => (
                     <Link key={a.slug} href={a.twitter.url} target="_blank" className="flex-shrink-0 block group">
                       <div className="flex items-center">
@@ -74,7 +73,7 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
 
             <div className="overflow-auto shadow-xl rounded-2xl border-stone-300">
               <Link href={project.path} scroll={true}>
-                {image.data.screenshot?.url ? (
+                {image?.data.screenshot?.url ? (
                   <img src={image.data.screenshot.url} alt={`Screenshot of ${project.url}`} />
                 ) : null}
               </Link>
