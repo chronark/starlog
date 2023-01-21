@@ -64,15 +64,24 @@ export default async function PostPage({ params }: PostPageProps) {
                   ))}
                 </ul>
               </div>
-
-
             </div>
           </div>
         </div>
         <div className="flex items-center justify-center gap-4">
-          <Link target="_blank" className="px-4 py-2 font-semibold text-right duration-500 border-b border-transparent text-stone-800 hover:border-stone-900" href={project.dubUrl}>Website</Link>
-          <Link target="_blank" className="px-4 py-2 font-semibold text-left duration-500 border-b border-transparent text-stone-800 hover:border-stone-900" href={`https://github.com/${project.repository}`}>Repository</Link>
-
+          <Link
+            target="_blank"
+            className="px-4 py-2 font-semibold text-right duration-500 border-b border-transparent text-stone-800 hover:border-stone-900"
+            href={project.dubUrl}
+          >
+            Website
+          </Link>
+          <Link
+            target="_blank"
+            className="px-4 py-2 font-semibold text-left duration-500 border-b border-transparent text-stone-800 hover:border-stone-900"
+            href={`https://github.com/${project.repository}`}
+          >
+            Repository
+          </Link>
         </div>
       </header>
       <main className="border-t border-stone-200">
