@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
 import { allAuthors, allProjects } from "contentlayer/generated";
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Mdx } from "@/app/components/mdx";
 import { Navigation } from "@/app/components/nav";
 import "@/styles/mdx.css";
 import Link from "next/link";
-import Image from "next/image";
 
 interface PostPageProps {
   params: {
@@ -34,7 +32,7 @@ export default async function PostPage({ params }: PostPageProps) {
       <Navigation />
       <header className=" bg-gradient-to-tr from-stone-100 via-white to-stone-200">
         <div className="relative px-6 lg:px-8">
-          <div className="max-w-3xl pt-20 pb-16 mx-auto sm:pt-48 sm:pb-24">
+          <div className="max-w-3xl pt-20 pb-16 mx-auto sm:pt-48">
             <div>
               <h1 className="text-4xl font-bold tracking-tight text-stone-900 sm:text-center sm:text-6xl">
                 {project.title}
@@ -66,12 +64,19 @@ export default async function PostPage({ params }: PostPageProps) {
                   ))}
                 </ul>
               </div>
+
+
             </div>
           </div>
         </div>
+        <div className="flex items-center justify-center gap-4">
+          <Link target="_blank" className="px-4 py-2 font-semibold text-right duration-500 border-b border-transparent text-stone-800 hover:border-stone-900" href={project.dubUrl}>Website</Link>
+          <Link target="_blank" className="px-4 py-2 font-semibold text-left duration-500 border-b border-transparent text-stone-800 hover:border-stone-900" href={`https://github.com/${project.repository}`}>Repository</Link>
+
+        </div>
       </header>
       <main className="border-t border-stone-200">
-        <article className="py-12 mx-auto prose">
+        <article className="py-12 mx-auto prose lg:prose-lg ">
           <Mdx code={project.body.code} />
         </article>
       </main>
