@@ -9,7 +9,7 @@ var computedFields = {
     type: "string",
     resolve: (doc) => `/${doc._raw.flattenedPath}`,
   },
-  slugAsParams: {
+  slug: {
     type: "string",
     resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
   },
@@ -30,13 +30,21 @@ var Project = defineDocumentType(() => ({
       type: "date",
       required: true,
     },
-    image: {
+    dubUrl: {
+      type: "string",
+      required: true,
+    },
+    url: {
       type: "string",
       required: true,
     },
     tech: {
       type: "list",
       of: { type: "string" },
+    },
+    repository: {
+      type: "string",
+      required: true,
     },
     authors: {
       // Reference types are not embedded.
@@ -66,11 +74,47 @@ var Author = defineDocumentType(() => ({
     description: {
       type: "string",
     },
+    twitter: {
+      type: "nested",
+      required: true,
+      of: defineDocumentType(() => ({
+        name: "Twitter",
+        fields: {
+          username: {
+            type: "string",
+            required: true,
+          },
+          url: {
+            type: "string",
+            required: true,
+          },
+        },
+      })),
+    },
     avatar: {
       type: "string",
       required: true,
     },
-    twitter: {
+  },
+  computedFields,
+}));
+var Tech = defineDocumentType(() => ({
+  name: "Tech",
+  filePathPattern: "tech/**/*.mdx",
+  contentType: "mdx",
+  fields: {
+    slug: {
+      type: "string",
+      required: true,
+    },
+    name: {
+      type: "string",
+      required: true,
+    },
+    description: {
+      type: "string",
+    },
+    logo: {
       type: "string",
       required: true,
     },
@@ -94,7 +138,7 @@ var Page = defineDocumentType(() => ({
 }));
 var contentlayer_config_default = makeSource({
   contentDirPath: "./content",
-  documentTypes: [Page, Project, Author],
+  documentTypes: [Page, Project, Author, Tech],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
@@ -128,5 +172,5 @@ var contentlayer_config_default = makeSource({
     ],
   },
 });
-export { Author, Page, Project, contentlayer_config_default as default };
-//# sourceMappingURL=compiled-contentlayer-config-MNC3EHPW.mjs.map
+export { Author, Page, Project, Tech, contentlayer_config_default as default };
+//# sourceMappingURL=compiled-contentlayer-config-ZEEM4WOE.mjs.map

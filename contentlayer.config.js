@@ -10,7 +10,7 @@ const computedFields = {
     type: "string",
     resolve: (doc) => `/${doc._raw.flattenedPath}`,
   },
-  slugAsParams: {
+  slug: {
     type: "string",
     resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
   },
@@ -33,11 +33,11 @@ export const Project = defineDocumentType(() => ({
       type: "date",
       required: true,
     },
-    url: {
+    dubUrl: {
       type: "string",
       required: true,
     },
-    image: {
+    url: {
       type: "string",
       required: true,
     },
@@ -45,7 +45,7 @@ export const Project = defineDocumentType(() => ({
       type: "list",
       of: { type: "string" },
     },
-    github: {
+    repository: {
       type: "string",
       required: true,
     },
@@ -79,10 +79,48 @@ export const Author = defineDocumentType(() => ({
       type: "string",
     },
     twitter: {
+      type: "nested",
+      required: true,
+      of: defineDocumentType(() => ({
+        name: "Twitter",
+        fields: {
+          username: {
+            type: "string",
+            required: true,
+          },
+          url: {
+            type: "string",
+            required: true,
+          },
+        },
+      })),
+    },
+    avatar: {
       type: "string",
       required: true,
     },
-    avatar: {
+  },
+  computedFields,
+}));
+
+export const Tech = defineDocumentType(() => ({
+  name: "Tech",
+  filePathPattern: "tech/**/*.mdx",
+  contentType: "mdx",
+  fields: {
+    slug: {
+      type: "string",
+      required: true,
+    },
+    name: {
+      type: "string",
+      required: true,
+    },
+    description: {
+      type: "string",
+    },
+
+    logo: {
       type: "string",
       required: true,
     },
@@ -108,7 +146,7 @@ export const Page = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Page, Project, Author],
+  documentTypes: [Page, Project, Author, Tech],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

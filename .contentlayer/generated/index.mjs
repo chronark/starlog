@@ -7,7 +7,8 @@ export { isType } from "contentlayer/client";
 import { allPages } from "./Page/_index.mjs";
 import { allProjects } from "./Project/_index.mjs";
 import { allAuthors } from "./Author/_index.mjs";
+import { allTeches } from "./Tech/_index.mjs";
 
-export { allPages, allProjects, allAuthors };
+export { allPages, allProjects, allAuthors, allTeches };
 
-export const allDocuments = [...allPages, ...allProjects, ...allAuthors];
+export const allDocuments = [...allPages, ...allProjects, ...allAuthors, ...allTeches];

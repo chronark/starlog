@@ -16,12 +16,12 @@ export type Author = {
   slug: string;
   name: string;
   description?: string | undefined;
-  twitter: string;
+  twitter: Twitter;
   avatar: string;
   /** MDX file body */
   body: MDX;
   path: string;
-  slugAsParams: string;
+  slug: string;
 };
 
 export type Page = {
@@ -34,7 +34,7 @@ export type Page = {
   /** MDX file body */
   body: MDX;
   path: string;
-  slugAsParams: string;
+  slug: string;
 };
 
 export type Project = {
@@ -45,29 +45,52 @@ export type Project = {
   title: string;
   description?: string | undefined;
   date: IsoDateTimeString;
+  dubUrl: string;
   url: string;
-  image: string;
   tech?: string[] | undefined;
-  github: string;
+  repository: string;
   authors: string[];
   /** MDX file body */
   body: MDX;
   path: string;
-  slugAsParams: string;
+  slug: string;
+};
+
+export type Tech = {
+  /** File path relative to `contentDirPath` */
+  _id: string;
+  _raw: Local.RawDocumentData;
+  type: "Tech";
+  slug: string;
+  name: string;
+  description?: string | undefined;
+  logo: string;
+  /** MDX file body */
+  body: MDX;
+  path: string;
+  slug: string;
 };
 
 /** Nested types */
+export type Twitter = {
+  /** File path relative to `contentDirPath` */
+  _id: string;
+  _raw: Local.RawDocumentData;
+  type: "Twitter";
+  username: string;
+  url: string;
+};
 
 /** Helper types */
 
 export type AllTypes = DocumentTypes | NestedTypes;
 export type AllTypeNames = DocumentTypeNames | NestedTypeNames;
 
-export type DocumentTypes = Author | Page | Project;
-export type DocumentTypeNames = "Author" | "Page" | "Project";
+export type DocumentTypes = Author | Page | Project | Tech;
+export type DocumentTypeNames = "Author" | "Page" | "Project" | "Tech";
 
-export type NestedTypes = never;
-export type NestedTypeNames = never;
+export type NestedTypes = Twitter;
+export type NestedTypeNames = "Twitter";
 
 export interface ContentlayerGenTypes {
   documentTypes: DocumentTypes;
@@ -87,6 +110,9 @@ export type DocumentTypeMap = {
   Author: Author;
   Page: Page;
   Project: Project;
+  Tech: Tech;
 };
 
-export type NestedTypeMap = {};
+export type NestedTypeMap = {
+  Twitter: Twitter;
+};

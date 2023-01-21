@@ -87,7 +87,6 @@ const components = {
     />
   ),
   Image,
-  w,
 };
 
 interface MdxProps {

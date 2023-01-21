@@ -2,6 +2,8 @@ import "tailwindcss/tailwind.css";
 import { Inter } from "@next/font/google";
 
 import { Analytics } from "@/app/components/analytics";
+import { Banner } from "@/app/components/banner";
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export default function RootLayout({
@@ -16,6 +18,7 @@ export default function RootLayout({
         <Analytics />
         {/* <Header /> */}
 
+        <Banner />
         <main>{children}</main>
       </body>
     </html>
