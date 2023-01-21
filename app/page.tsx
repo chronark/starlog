@@ -2,7 +2,7 @@ import Link from "next/link";
 import { allProjects, allAuthors, Project } from "contentlayer/generated";
 import { Time } from "./components/time";
 import mql from "@microlink/mql";
-import { StarIcon } from "@heroicons/react/24/solid";
+import { Banner } from "./components/banner";
 
 export const revalidate = 360;
 
@@ -24,7 +24,7 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
     .then((json) => json.stargazers_count as number);
 
   return (
-    <article>
+    <article id={project.slug}>
       <div className="space-y-2 xl:grid xl:grid-cols-5 xl:items-baseline xl:space-y-0">
         <dl>
           <dt className="sr-only">Published on</dt>
@@ -71,10 +71,12 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
               </div>
             </div>
 
-            <div className="overflow-auto rounded-lg shadow-xl border-stone-300">
-              {image.data.screenshot?.url ? (
-                <img src={image.data.screenshot.url} alt={`Screenshot of ${project.url}`} />
-              ) : null}
+            <div className="overflow-auto shadow-xl rounded-2xl border-stone-300">
+              <Link href={project.path} scroll={true}>
+                {image.data.screenshot?.url ? (
+                  <img src={image.data.screenshot.url} alt={`Screenshot of ${project.url}`} />
+                ) : null}
+              </Link>
             </div>
             <h2 className="text-2xl font-bold leading-8 tracking-tight">
               <Link target="_blank" href={project.dubUrl} className="text-stone-900 dark:text-stone-100">
@@ -116,21 +118,12 @@ export default async function BlogPage() {
 
   return (
     <div>
+      <Banner />
+
       <main className=" bg-gradient-to-tr from-stone-100 via-white to-stone-200">
         <div className="relative px-6 lg:px-8">
           <div className="max-w-3xl pt-20 pb-24 mx-auto sm:pt-48 sm:pb-32">
             <div>
-              {/* <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                                <div className="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-stone-900/10 hover:ring-stone-900/20">
-                                    <span className="text-stone-600">
-                                        Announcing our next round of funding.{' '}
-                                        <a href="#" className="font-semibold text-indigo-600">
-                                            <span className="absolute inset-0" aria-hidden="true" />
-                                            Read more <span aria-hidden="true">&rarr;</span>
-                                        </a>
-                                    </span>
-                                </div>
-                            </div> */}
               <div>
                 <h1 className="text-4xl font-bold tracking-tight text-stone-900 sm:text-center sm:text-6xl">
                   starlog.dev
@@ -145,7 +138,7 @@ export default async function BlogPage() {
                     {allAuthors
                       .sort((a, b) => Math.random() - 0.5)
                       .map((author) => (
-                        <Link target="_blank" href={author.twitter.url}>
+                        <Link key={author.slug} target="_blank" href={author.twitter.url}>
                           <img
                             className="relative z-30 inline-block w-10 h-10 rounded-full ring-2 ring-white"
                             src={author.avatar}

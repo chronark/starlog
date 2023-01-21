@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { allAuthors, allProjects } from "contentlayer/generated";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Mdx } from "@/app/components/mdx";
+import { Navigation } from "@/app/components/nav";
 import "@/styles/mdx.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -29,7 +30,8 @@ export default async function PostPage({ params }: PostPageProps) {
   const authors = project.authors.map((slug) => allAuthors.find((a) => a.slug === slug)!);
 
   return (
-    <div>
+    <div className="relative">
+      <Navigation />
       <header className=" bg-gradient-to-tr from-stone-100 via-white to-stone-200">
         <div className="relative px-6 lg:px-8">
           <div className="max-w-3xl pt-20 pb-16 mx-auto sm:pt-48 sm:pb-24">
