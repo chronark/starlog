@@ -121,10 +121,12 @@ export default async function Page() {
                       <Metric>{allProjects.length}</Metric>
                       <Text>Projects</Text>
                     </Flex>
-                    {stars ? <Flex>
-                      <Metric>{stars}</Metric>
-                      <Text>GitHub Stars</Text>
-                    </Flex> : null}
+                    {stars ? (
+                      <Flex>
+                        <Metric>{stars}</Metric>
+                        <Text>GitHub Stars</Text>
+                      </Flex>
+                    ) : null}
                   </ColGrid>
                 </div>
               </Card>
