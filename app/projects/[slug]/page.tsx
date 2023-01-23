@@ -34,7 +34,9 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="relative px-6 lg:px-8">
           <div className="max-w-3xl pt-20 pb-16 mx-auto sm:pt-48">
             <div>
-              <h1 className="text-4xl font-bold uppercase text-stone-900 sm:text-center sm:text-6xl">{project.title}</h1>
+              <h1 className="text-4xl font-bold uppercase text-stone-900 sm:text-center sm:text-6xl">
+                {project.title}
+              </h1>
               <p className="mt-6 text-lg leading-8 text-stone-600 sm:text-center">{project.description} </p>
 
               <div className="mt-16 lg:mt-24">
@@ -48,7 +50,7 @@ export default async function PostPage({ params }: PostPageProps) {
                       className="flex items-center gap-2 p-4 duration-500 group"
                     >
                       <img
-                        className="relative z-30 inline-block w-16 h-16 duration-500 rounded-full group-hover:scale-105"
+                        className="relative z-30 inline-block w-12 h-12 duration-500 rounded-full group-hover:scale-105"
                         src={author.avatar}
                         alt={author.name}
                       />

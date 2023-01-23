@@ -1,8 +1,9 @@
 import "tailwindcss/tailwind.css";
 import { Inter } from "@next/font/google";
 import font from "@next/font/local";
-import { Analytics } from "@/app/components/analytics";
 import Link from "next/link";
+import "@tremor/react/dist/esm/tremor.css";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const pangea = font({
   src: [
@@ -69,9 +70,6 @@ export default function RootLayout({
     <html lang="en" className={[inter.variable, pangea.variable].join(" ")}>
       <head />
       <body className="min-h-screen">
-        <Analytics />
-        {/* <Header /> */}
-
         <main>{children}</main>
         <footer className="px-8 py-8 bg-white border-t border-stone-200">
           <div className="text-sm text-center text-stone-400 ">

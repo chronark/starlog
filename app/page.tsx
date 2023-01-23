@@ -2,7 +2,7 @@ import Link from "next/link";
 import { allProjects, allAuthors, Project } from "contentlayer/generated";
 import { Time } from "./components/time";
 import mql from "@microlink/mql";
-import { Banner } from "./components/banner";
+import { Navigation } from "./components/nav";
 
 export const revalidate = 360;
 
@@ -118,7 +118,7 @@ export default async function BlogPage() {
 
   return (
     <div>
-      <Banner />
+      <Navigation />
 
       <main className=" bg-gradient-to-tr from-stone-100 via-white to-stone-200">
         <div className="relative px-6 lg:px-8">
