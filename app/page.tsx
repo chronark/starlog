@@ -72,7 +72,7 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
             </div>
 
             <div className="overflow-auto duration-500 rounded shadow-xl md:rounded-xl lg:rounded-2xl hover:shadow-2xl border-stone-300">
-              <Link href={project.path} scroll={true}>
+              <Link href={project.path}>
                 {image?.data.screenshot?.url ? (
                   <img src={image.data.screenshot.url} alt={`Screenshot of ${project.url}`} />
                 ) : null}

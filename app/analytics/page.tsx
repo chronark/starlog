@@ -45,7 +45,6 @@ export default async function Page() {
   );
 
   const totalPageViewsPerPage = pageViews.reduce((acc, { views }) => {
-    console.log({ views });
     for (const [page, count] of Object.entries(views)) {
       acc[page] = (acc[page] || 0) + count;
     }
@@ -77,7 +76,7 @@ export default async function Page() {
       </header>
       <main className="py-8 border-t lg:py-16 border-stone-200">
         <div className="container mx-auto">
-          <ColGrid numCols={3} gapX="gap-x-8" gapY="gap-y-8">
+          <ColGrid numCols={1} numColsMd={3} gapX="gap-x-8" gapY="gap-y-8">
             <Col numColSpan={3}>
               <Card>
                 <Title>Views in last 7 days</Title>
@@ -89,7 +88,7 @@ export default async function Page() {
               </Card>
             </Col>
 
-            <Col numColSpan={2}>
+            <Col numColSpan={3} numColSpanMd={2}>
               <Card>
                 <div className="h-72">
                   <Title>Top Pages</Title>
@@ -108,7 +107,7 @@ export default async function Page() {
                 </div>
               </Card>
             </Col>
-            <Col numColSpan={1}>
+            <Col numColSpan={3} numColSpanMd={1}>
               <Card>
                 <div className="h-72">
                   <Title>Stats</Title>
