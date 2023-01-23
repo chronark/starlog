@@ -20,7 +20,7 @@ export default function middleware(req: Request, event: NextFetchEvent): NextRes
   /**
    * Divide time into 1 hour buckets
    */
-  const bucket = new Date().setMinutes(0, 0, 0).toString();
+  const bucket = new Date().setHours(0, 0, 0, 0).toString();
 
   /**
    *  Increment the pageview counter for this URL but outside of the critical path
