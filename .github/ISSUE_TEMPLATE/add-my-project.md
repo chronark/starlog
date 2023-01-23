@@ -14,3 +14,6 @@ assignees: chronark
 **Public URL**
 
 **Your twitter handle**
+
+
+Please make sure your repository has a readme with instructions how to run and deploy your project.
