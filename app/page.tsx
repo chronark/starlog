@@ -14,6 +14,7 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
   const image = await mql(project.url, {
     screenshot: true,
     waitForTimeout: 2000,
+    apiKey: process.env.MICROLINK_TOKEN,
   }).catch(() => null);
 
   const stars = await fetch(`https://api.github.com/repos/${project.repository}`, {
@@ -73,7 +74,7 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
 
             <div className="overflow-auto duration-500 rounded shadow-xl md:rounded-xl lg:rounded-2xl hover:shadow-2xl border-stone-300">
               <Link href={project.path}>
-                {image?.data.screenshot?.url ? (
+                {image?.data?.screenshot?.url ? (
                   <img src={image.data.screenshot.url} alt={`Screenshot of ${project.url}`} />
                 ) : null}
               </Link>
