@@ -3,6 +3,8 @@ import { allProjects, allAuthors, Project } from "contentlayer/generated";
 import { Time } from "./components/time";
 import mql from "@microlink/mql";
 import { Navigation } from "./components/nav";
+import { AnimatedTooltip } from "./components/animted-tooltip";
+import { parseData } from "@/lib/parseData";
 
 export const revalidate = 360;
 
@@ -41,13 +43,24 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
                 {allAuthors
                   .filter((a) => project.authors.includes(a.slug))
                   .map((a) => (
-                    <Link key={a.slug} href={a.twitter.url} target="_blank" className="flex-shrink-0 block group">
+                    <Link
+                      key={a.slug}
+                      href={a.twitter.url}
+                      target="_blank"
+                      className="flex-shrink-0 block group"
+                    >
                       <div className="flex items-center">
                         <div>
-                          <img className="inline-block rounded-full h-9 w-9" src={a.avatar} alt="" />
+                          <img
+                            className="inline-block rounded-full h-9 w-9"
+                            src={a.avatar}
+                            alt=""
+                          />
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm font-medium text-stone-700 group-hover:text-stone-900">{a.name}</p>
+                          <p className="text-sm font-medium text-stone-700 group-hover:text-stone-900">
+                            {a.name}
+                          </p>
                           <p className="text-xs font-medium text-stone-500 group-hover:text-stone-700">
                             {a.description}
                           </p>
@@ -64,7 +77,9 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
                     className="text-xs hover:underline"
                   >
                     <span className="text-sm font-medium text-stone-900">
-                      {Intl.NumberFormat("en-US", { notation: "compact" }).format(stars)}
+                      {Intl.NumberFormat("en-US", {
+                        notation: "compact",
+                      }).format(10)}
                     </span>{" "}
                     Stars on GitHub
                   </Link>
@@ -75,12 +90,19 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
             <div className="overflow-auto duration-500 rounded shadow-xl md:rounded-xl lg:rounded-2xl hover:shadow-2xl border-stone-300">
               <Link href={project.path}>
                 {image?.data?.screenshot?.url ? (
-                  <img src={image.data.screenshot.url} alt={`Screenshot of ${project.url}`} />
+                  <img
+                    src={image.data.screenshot.url}
+                    alt={`Screenshot of ${project.url}`}
+                  />
                 ) : null}
               </Link>
             </div>
             <h2 className="text-2xl font-bold leading-8 tracking-tight font-display">
-              <Link target="_blank" href={project.dubUrl} className="text-stone-900 dark:text-stone-100">
+              <Link
+                target="_blank"
+                href={project.dubUrl}
+                className="text-stone-900 dark:text-stone-100"
+              >
                 {project.title}
               </Link>
             </h2>
@@ -95,7 +117,9 @@ const Project = asyncComponent(async ({ project }: { project: Project }) => {
               ))}
             </div>
 
-            <div className="prose text-stone-500 max-w-none dark:text-stone-400">{project.description}</div>
+            <div className="prose text-stone-500 max-w-none dark:text-stone-400">
+              {project.description}
+            </div>
           </div>
           <div className="text-base font-medium leading-6">
             <Link
@@ -116,7 +140,7 @@ export default async function BlogPage() {
   const projects = allProjects.sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
-
+  const parsedData = parseData();
   return (
     <div>
       <Navigation />
@@ -130,16 +154,27 @@ export default async function BlogPage() {
                   starlog.dev
                 </h1>
                 <p className="mt-6 text-lg font-medium leading-8 tracking-tight font-regular text-stone-500 sm:text-center">
-                  A showcase of awesome open source projects and templates to help you build your next serverless app.
+                  A showcase of awesome open source projects and templates to
+                  help you build your next serverless app.
                 </p>
 
                 <div className="mt-16">
-                  <h3 className="text-sm text-center text-stone-900 font-display">Featuring</h3>
-                  <ul className="flex items-center justify-center w-full mt-4 -space-x-2 overflow-hidden ">
+                  <h3 className="text-sm text-center text-stone-900 font-display mb-2">
+                    Featuring
+                  </h3>
+                  <div className="flex flex-row items-center justify-center mb-10 w-full">
+                    <AnimatedTooltip items={parsedData} />
+                  </div>
+                  {/* the code below is the previous implementation for showcasing the contributors */}
+                  {/* <ul className="flex items-center justify-center w-full mt-4 -space-x-2 overflow-hidden ">
                     {allAuthors
                       .sort((a, b) => Math.random() - 0.5)
                       .map((author) => (
-                        <Link key={author.slug} target="_blank" href={author.twitter.url}>
+                        <Link
+                          key={author.slug}
+                          target="_blank"
+                          href={author.twitter.url}
+                        >
                           <img
                             className="relative z-30 inline-block w-10 h-10 rounded-full ring-2 ring-white"
                             src={author.avatar}
@@ -147,7 +182,7 @@ export default async function BlogPage() {
                           />
                         </Link>
                       ))}
-                  </ul>
+                  </ul> */}
                 </div>
 
                 {/* <div className="flex mt-8 gap-x-4 sm:justify-center">
